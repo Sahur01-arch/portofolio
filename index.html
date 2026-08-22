@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portofolio</title>
+  <meta name="description" content="Portofolio Ryushin: pengembang plugin Paper/Bukkit (Java), scripting server, dan konfigurasi infrastruktur Minecraft." />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+
+  <div class="topnav">
+    <button id="theme-toggle" class="btn-primary" aria-label="Ganti tema terang/gelap">🌙 Dark</button>
+    <button id="brand-button" class="btn-primary">Good Night</button>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero-card">
+    <div class="terminal" data-reveal>
+      <div class="terminal-bar">
+        <span class="terminal-dot red"></span>
+        <span class="terminal-dot yellow"></span>
+        <span class="terminal-dot green"></span>
+        <span class="terminal-path">ryushin@localhost: ~/portfolio</span>
+      </div>
+      <div class="terminal-body">
+        <div>
+          <p class="terminal-text terminal-prompt">whoami</p>
+          <h1 class="hero-subtitle">
+            <span id="typed-name" data-text="Ryushin">Ryushin</span><span class="cursor" aria-hidden="true">&nbsp;</span>
+          </h1>
+          <p class="hero-tagline">Minecraft Server Developer — Java, Bukkit/Paper API, server architecture &amp; scripting.</p>
+
+          <div class="hero-actions">
+            <!-- GANTI: arahkan ke repo/project andalanmu, bukan cuma profil -->
+            <a href="https://github.com/Sahur01-arch" class="btn-primary">Lihat GitHub</a>
+          </div>
+
+          <div class="social-container">
+            <a href="https://github.com/Sahur01-arch" aria-label="GitHub">
+              <svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.8 5.4.8 11.8c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11 11 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.3 11.3 0 0 0 23.2 11.8C23.2 5.4 18.3.5 12 .5Z"/></svg>
+            </a>
+            <a href="https://wa.me/6285178189217" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-9.9 17.3L.5 23.5l5.9-1.5A11.5 11.5 0 1 0 12 .5Zm0 2a9.5 9.5 0 0 1 8 14.6l-.2.4.6 2.3-2.4-.6-.4.2A9.5 9.5 0 1 1 12 2.5Zm-3.4 4.7c-.2 0-.5.1-.7.4-.2.3-.9.9-.9 2.1s.9 2.5 1 2.6c.1.2 1.8 2.8 4.3 3.8 2.1.8 2.5.7 3 .6.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.5-.3l-1.9-.9c-.3-.1-.5-.1-.7.1l-.7.9c-.1.2-.3.2-.5.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.6-1.5-1.9-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5l-.9-2.1c-.2-.4-.4-.4-.6-.4h-.5Z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <img src="./src/assets-img/profile.jpg" alt="Foto profil Saryu" class="photo" />
+      </div>
+    </div>
+  </section>
+
+  <section class="projects" data-reveal>
+    <h2 class="section-title">projects</h2>
+    <div class="projects-grid">
+
+      <article class="project-card">
+        <div class="project-head">
+          <h3>RyuLib</h3>
+          <span class="project-status">v3.0.0</span>
+        </div>
+        <p>
+          Library pendukung untuk pengembangan 
+          plugin Paper/Bukkit yang menyediakan berbagai 
+          komponen siap pakai, seperti command builder, 
+          GUI inventory, event bus, konfigurasi YAML, cache/cooldown, 
+          dan wrapper JDBC untuk SQLite. Dibangun dari Java untuk 
+          menyederhanakan proses pengembangan plugin dan mengurangi boilerplate code.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Java</span>
+          <span class="tag">Paper API</span>
+          <span class="tag">Gradle</span>
+          <span class="tag">JDBC</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Sahur01-arch/RyuLib">Source →</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-head">
+          <h3>School Plugin</h3>
+          <span class="project-status">in progress</span>
+        </div>
+        <p>
+            Sistem roleplay sekolah untuk server Minecraft: pemilihan jurusan
+          lewat GUI custom, manajemen kelas, sistem tugas, absensi, dan
+          panduan interaktif — dibangun di atas RyuLib. Sedang dimigrasikan
+          dari prototipe scripting <a href="https://modrinth.com/plugin/openjavascript">OpenJS</a> ke plugin Java penuh.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Java</span>
+          <span class="tag">RyuLib</span>
+          <span class="tag">Gradle</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Sahur01-arch/School-Plugin/">Source →</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-head">
+          <h3>Marriage Plugin</h3>
+          <span class="project-status">v1.0.2</span>
+        </div>
+        <p>
+            Plugin relationship dan family untuk
+          Minecraft yang memungkinkan player membangun
+          hubungan dan membentuk keluarga di dalam game.
+          Fitur utamanya mencakup sistem lamaran dan, family tree 
+          dan level ikatan yang dapat berkembang melalui aktivitas bersama
+          seperti memancing dan mining
+        </p>
+        <div class="project-tags">
+          <span class="tag">Java</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">PaperAPI</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Sahur01-arch/Marriage-Plugin/">Source</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-head">
+          <h3>skript-worldguard (Fork)</h3>
+          <span class="project-status">v1.0.2</span>
+        </div>
+        <p>
+          Fork dari Skript-WorldGuard yang berfokus 
+          pada pembaruan kode deprecated dan 
+          penyesuaian API agar plugin tetap 
+          kompatibel dengan versi Minecraft yang 
+          lebih baru.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Java</span>
+          <span class="tag">Gradle</span>
+          <span class="tag">Fork</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Sahur01-arch/skript-worldguard-26.2/">Source</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="about" data-reveal>
+    <h2 class="section-title">about-me</h2>
+    <div class="about-grid">
+      <div class="about-box">
+        <h3>who am i?</h3>
+        <p>Minecraft Server &amp; Plugin Developer — fokus di pengembangan plugin Java maupun server berbasis (Paper/Bukkit API).</p>
+      </div>
+      <div class="about-box">
+        <h3>work focus</h3>
+        <p>Pengembangan library &amp; plugin Java, integrasi database (JDBC), sistem GUI/event custom, dan konfigurasi infrastruktur server Minecraft.</p>
+      </div>
+      <div class="about-box">
+        <h3>tools</h3>
+        <span class="tag">Termux</span>
+        <span class="tag">Neovim</span>
+        <span class="tag">jdtls (Java LSP)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section class="skills" data-reveal>
+    <h2 class="section-title">skills</h2>
+    <div class="skills-grid">
+      <div class="skills-box">
+        <h3>&lt;/&gt; Languages</h3>
+        <span class="tag">Java</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">SQL</span>
+      </div>
+      <div class="skills-box">
+        <h3>⚙️ Platforms &amp; Engines</h3>
+        <span class="tag">Paper</span>
+        <span class="tag">Purpur</span>
+      </div>
+     <div class="skills-box">
+        <h3>💻 Environment &amp; DevOps</h3>
+        <span class="tag">Linux</span>
+        <span class="tag">Gradle</span>
+        <span class="tag">Git</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    © 2026 Ryushin — dibangun dengan HTML, CSS, dan JavaScript.
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

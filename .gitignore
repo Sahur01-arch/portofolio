@@ -1,0 +1,22 @@
+# 1. Dependency / Pustaka Node.js (WAJIB diabaikan, ukurannya sangat besar)
+node_modules/
+
+# 2. File Log & Cache
+*.log
+.DS_Store
+.vscode/
+.idea/
+
+# 3. File font varian Mono & Propo yang tidak dipakai
+# (Agar repositori tidak berat membawa belasan file font .ttf)
+assets/css/fonts/*Mono*.ttf
+assets/css/fonts/*Propo*.ttf
+
+# 4. (Opsional) File environment/rahasia jika nanti menggunakan backend
+.env
+<<<<<<< HEAD
+=======
+android/
+capacitor.config.json
+
+>>>>>>> a395dced96ee1da4e7e437c2fb75e88ea94f2e04

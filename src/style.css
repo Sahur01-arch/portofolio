@@ -1,0 +1,438 @@
+/* ============================================================
+   PORTOFOLIO — Saryu
+   Arah visual: "terminal / config file" — mencerminkan workflow
+   sungguhan (Termux, Neovim, YAML config) alih-alih template
+   developer portfolio generik.
+   ============================================================ */
+
+/* ---------- Design tokens ---------- */
+:root {
+  /* Warna dasar (dark, default) */
+  --bg: #12151c;
+  --surface: #1a1e29;
+  --surface-2: #20263380;
+  --border: #2a3140;
+  --text: #e4e7ee;
+  --text-muted: #8b93a7;
+  --text-dim: #5c6478;
+
+  /* Aksen: amber (terminal/gold) + hijau (status "online") */
+  --accent: #f2b90c;
+  --accent-ink: #1a1400;
+  --status: #5fd1a0;
+  --danger: #e5637a;
+
+  /* Tipografi */
+  --font-display: "JetBrains Mono", "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --font-body: "Inter", "Manrope", system-ui, -apple-system, sans-serif;
+
+  /* Ritme */
+  --radius: 6px;
+  --radius-lg: 10px;
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --max-w: 920px;
+
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="light"] {
+  --bg: #f5f3ee;
+  --surface: #ffffff;
+  --surface-2: #eee9df80;
+  --border: #ddd6c7;
+  --text: #211f1c;
+  --text-muted: #625c50;
+  --text-dim: #948d7e;
+  --accent-ink: #1a1400;
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ---------- Focus (aksesibilitas) ---------- */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Top navigation ---------- */
+.topnav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.btn-primary {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-primary:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+#brand-button {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ---------- Layout shell ---------- */
+section {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-3);
+}
+
+/* ---------- Hero: jendela terminal ---------- */
+.hero-card {
+  max-width: var(--max-w);
+  margin: var(--space-4) auto 0;
+  padding: 0 var(--space-3);
+}
+
+.terminal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0.65rem var(--space-2);
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.terminal-dot.red { background: var(--danger); }
+.terminal-dot.yellow { background: var(--accent); }
+.terminal-dot.green { background: var(--status); }
+
+.terminal-path {
+  margin-left: var(--space-2);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.terminal-body {
+  padding: var(--space-3);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.terminal-text {
+  font-family: var(--font-display);
+}
+
+.terminal-prompt {
+  color: var(--status);
+}
+
+.terminal-prompt::before {
+  content: "~/portfolio $ ";
+  color: var(--text-dim);
+}
+
+.hero-subtitle {
+  margin: var(--space-2) 0 0.4rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.hero-subtitle .cursor {
+  display: inline-block;
+  width: 0.55ch;
+  background: var(--accent);
+  margin-left: 2px;
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.hero-tagline {
+  color: var(--text-muted);
+  margin: 0 0 var(--space-2);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: var(--space-2);
+}
+
+.photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent);
+  justify-self: end;
+}
+
+.social-container {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: var(--space-2);
+}
+
+.social-container a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  transition: border-color 0.2s ease, transform 0.15s ease;
+}
+
+.social-container a:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.social-container svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--text);
+}
+
+/* ---------- Section labels (gaya komentar YAML/config) ---------- */
+.section-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-dim);
+  margin: 0 0 var(--space-3);
+  padding-bottom: var(--space-1);
+  border-bottom: 1px dashed var(--border);
+}
+
+.section-title::before {
+  content: "# ";
+  color: var(--accent);
+}
+
+/* ---------- Projects ---------- */
+.projects-grid {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  transition: border-color 0.2s ease, transform 0.15s ease;
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.project-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.project-head h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+
+.project-status {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  color: var(--status);
+  white-space: nowrap;
+}
+
+.project-status::before {
+  content: "● ";
+}
+
+.project-card p {
+  color: var(--text-muted);
+  margin: 0.6rem 0 var(--space-2);
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: var(--space-2);
+}
+
+.project-links {
+  display: flex;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+}
+
+.project-links a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.project-links a:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- About / Skills grids ---------- */
+.about-grid,
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-2);
+}
+
+.about-box,
+.skills-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+}
+
+.about-box h3,
+.skills-box h3 {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.about-box p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  padding: 0.28rem 0.55rem;
+  margin: 0 0.35rem 0.35rem 0;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  background: var(--surface-2);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: var(--space-3);
+  text-align: center;
+  color: var(--text-dim);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ---------- Scroll reveal (dipakai bersama main.js) ---------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Responsif ---------- */
+@media (max-width: 560px) {
+  .terminal-body {
+    grid-template-columns: 1fr;
+  }
+  .photo {
+    justify-self: start;
+  }
+}
